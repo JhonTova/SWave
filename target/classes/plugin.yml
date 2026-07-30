@@ -1,0 +1,25 @@
+name: SWave
+version: '1.0.0'
+main: me.sirius.swave.SWave
+api-version: '1.21'
+author: Sirius
+website: https://github.com/JhonTova
+description: Modo celebración para las compras de la tienda.
+
+# Sin SiriusCore.jar, Bukkit ni intenta cargar este plugin.
+depend:
+  - SiriusCore
+
+commands:
+  swave:
+    description: Inicia, detiene o recarga el modo celebración.
+    usage: /swave <start|stop|reload>
+    permission: swave.admin
+
+permissions:
+  swave.admin:
+    description: Gestiona el modo celebración (start/stop/reload).
+    default: op
+  swave.claim:
+    description: Permite reclamar la recompensa escribiendo GG.
+    default: true

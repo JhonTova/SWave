@@ -1,0 +1,54 @@
+# SWave — modo celebración para las compras
+# https://github.com/JhonTova
+
+wave:
+  # Cuánto dura la ventana para escribir GG, en segundos.
+  duration-seconds: 30
+
+  # Palabras que cuentan como GG. Se comparan sin distinguir mayúsculas y sin espacios,
+  # así que "gg", "GG", "gG" y "Gg" valen todas con solo poner "gg".
+  triggers:
+    - gg
+    - ggwp
+
+  # Si llega otra compra con una celebración ya activa, se anuncia y se alarga la ventana
+  # en vez de abrir una segunda. Evita que dos compras seguidas dupliquen recompensas.
+  extend-on-new-purchase: true
+
+  # Máximo de recompensas que se reparten en una celebración. 0 = sin límite.
+  # Un tope protege la economía en servidores muy llenos.
+  max-rewards: 0
+
+chat:
+  # Cada GG se reemplaza por esta línea, con el color propio de quien lo escribió.
+  # <color> es el color asignado, <player> el jugador. Acepta MiniMessage.
+  format: '<color><bold>✦</bold> <player> <gray>»</gray> <color><bold>GG</bold>'
+
+  # Cuánto avanza el tono entre un GG y el siguiente. Un paso pequeño hace que el chat
+  # fluya como un arcoíris; uno grande da saltos de color más marcados.
+  color-step-degrees: 35
+
+  saturation: 0.9
+  brightness: 1.0
+
+rewards:
+  # Comandos que se ejecutan por consola por cada jugador que reclama.
+  # %player% se reemplaza por su nombre.
+  commands:
+    - 'eco give %player% 250'
+    - 'broadcast %player% celebró la compra y ganó 250 monedas!'
+
+messages:
+  # <buyer> = comprador, <package> = paquete comprado.
+  announce: |-
+    <newline><gradient:#00d4ff:#7b2ff7><bold>                    ¡NUEVA COMPRA!</bold></gradient>
+    <gray>                <buyer> <white>acaba de comprar <yellow><package>
+    <green>          ¡Escribe <bold>GG</bold> en el chat para celebrar y ganar tu recompensa!<newline>
+  reward: '<green>✔ ¡Gracias por celebrar! Tu recompensa está en camino.'
+  rewards-depleted: '<yellow>¡Gracias por celebrar! Las recompensas de esta ronda ya se agotaron.'
+  already-claimed: '<yellow>Ya recibiste tu recompensa en esta celebración.'
+  ended: '<gray>La celebración terminó. ¡Gracias a todos por participar!'
+  no-active-wave: '<red>No hay ninguna celebración activa ahora mismo.'
+  started-manually: '<green>Celebración iniciada manualmente.'
+  reloaded: '<green>Configuración de SWave recargada.'
+  usage: '<gray>Uso: <white>/swave <start|stop|reload>'
