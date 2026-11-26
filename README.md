@@ -1,11 +1,13 @@
 # SWave
 
+[![build](https://github.com/JhonTova/SWave/actions/workflows/build.yml/badge.svg)](https://github.com/JhonTova/SWave/actions/workflows/build.yml) [![release](https://img.shields.io/github/v/release/JhonTova/SWave?label=release)](https://github.com/JhonTova/SWave/releases/latest) ![Minecraft](https://img.shields.io/badge/Minecraft-1.21.11%2B-62B47A) ![Java](https://img.shields.io/badge/Java-21-E76F00)
+
 Modo celebración para las compras de la tienda. Cuando alguien compra un paquete, se
 abre una ventana de celebración: los jugadores que escriben **GG** en el chat reciben una
 recompensa —una sola vez— y su GG aparece con un color propio, formando un arcoíris que
 resalta la compra en todo el servidor.
 
-Requiere **SiriusCore**. Sin él, el servidor no carga este plugin.
+Requiere **[SiriusCore](https://github.com/JhonTova/SiriusCore)**. Sin él, el servidor no carga este plugin.
 
 ---
 
@@ -79,3 +81,21 @@ jugadores un modo así podría convertirse en una fuente de lag. SWave lo evita:
 Todo se ajusta en `config.yml`: duración de la ventana, palabras que cuentan como GG,
 formato y velocidad del arcoíris del chat, comandos de recompensa (`%player%`) y todos
 los mensajes. Tras editarlo, `/swave reload`.
+
+## Descarga
+
+El `.jar` de cada versión está en [Releases](https://github.com/JhonTova/SWave/releases/latest).
+
+## Compilar desde el código
+
+Requiere Java 21 y Maven. SiriusCore no está en un repositorio Maven público, así que
+primero se instala en local la versión que declara el `pom.xml`:
+
+```bash
+git clone --branch v1.1.1 https://github.com/JhonTova/SiriusCore.git
+mvn -f SiriusCore/pom.xml install -DskipTests
+mvn package        # en este repositorio; el .jar queda en target/
+```
+
+Cada push y pull request se compila en GitHub Actions. Al subir una tag `v*`, el `.jar`
+se adjunta solo a la release.
